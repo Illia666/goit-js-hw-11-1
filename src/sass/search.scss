@@ -1,0 +1,111 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  header {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    padding: 0.3em;
+    background-color: #4056b4;
+    width: 100%;
+  }
+  
+  input {
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    border: none;
+    outline: none !important;
+  
+    height: 2em;
+  }
+  
+  input :focus {
+    border: none;
+  }
+  
+  form {
+    display: flex;
+    align-items: stretch;
+    font-size: 20px;
+    position: relative;
+  }
+  
+  .search-form button {
+    border: none;
+    padding: 10px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2em;
+  }
+  
+  main {
+    padding-top: 50px;
+  }
+  
+  .gallery {
+    @media screen and (min-width: $tablet) {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--card-gap);
+    }
+    padding: 10px;
+  }
+  
+  .photo-card {
+    @include columns-media($tablet, 3);
+    @include columns-media($desktop, 4);
+  
+    box-shadow: 0px 2px 2px 2px rgba(0, 0, 0.5, 0.2);
+    transform: scale(1, 0) translateY(-50%);
+    overflow: hidden;
+    transition: transform 0.4s ease-in-out;
+  
+    &.loaded {
+      transform: none;
+    }
+    & .info {
+      display: flex;
+      justify-content: space-around;
+    }
+    & .info-item {
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      text-align: center;
+      line-height: 1.5em;
+    }
+    @media screen and (max-width: $tablet) {
+      &:not(:last-child) {
+        margin-bottom: var(--card-gap);
+      }
+    }
+  }
+  
+  .photo-card img {
+    width: 100%;
+    // height: 270px;
+    object-fit: cover;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .more {
+    height: 10px;
+  }
+  .load-more {
+    display: block;
+    margin: 0 auto;
+    background-color: #4056b4;
+    color: white;
+    cursor: pointer;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+  }

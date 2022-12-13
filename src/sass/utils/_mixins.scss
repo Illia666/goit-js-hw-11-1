@@ -1,0 +1,54 @@
+// Fonts
+@mixin font($fz, $fw: 400, $lh) {
+    font-size: $fz;
+    font-weight: $fw;
+    $line-height: calc($lh / $fz);
+  }
+  
+  @mixin font-size($fz, $lh) {
+    font-size: $fz;
+    $line-height: calc($lh / $fz);
+  }
+  
+  // position
+  @mixin abs-position($top, $left) {
+    position: absolute;
+    top: $top;
+  
+    left: $left;
+  }
+  
+  @mixin abs-center-position() {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation-fill-mode: forwards;
+  }
+  
+  @mixin flex-centered() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  // calculation of the block width depending on the number in the line
+  @mixin col-width($cols) {
+    flex-basis: calc((100% - (#{$cols} - 1) * var(--card-gap)) / #{$cols});
+  }
+  
+  @mixin col-width-scroll($cols) {
+    max-width: calc(
+      (100% - (#{$cols} - 1) * var(--card-gap)-var(--scroll-width)) / #{$cols}
+    );
+  }
+  // если появляутся полоса прокрутки то вью-порт шире контента на ширину полосы прокрутки
+  @mixin columns-media($minw, $cols) {
+    @media screen and (min-width: $minw) {
+      @include col-width($cols);
+    }
+    // может повится полоса прокрутки
+    @media screen and (min-width: $minw) and (max-width: ($minw+25px)) {
+      @include col-width($cols);
+    }
+  }
